@@ -101,7 +101,7 @@ if [ -f /usr/local/bin/httpx ]
 then
     echo "${magenta} [+] Running Httpx for sorting alive subdomains ${reset}"
     cat ~/Bugsubs/$DOM/Subdomains/unique.txt | httpx >> ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt
-    cat ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt | sed 's/http\(.?*\)*:\/\///g' | sort -u ~/Bugsubs/$DOM/Subdomains/protoless-all-alive-subs.txt
+    cat ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt | sed 's/http\(.?*\)*:\/\///g' | sort -u > ~/Bugsubs/$DOM/Subdomains/protoless-all-alive-subs.txt
 else
     echo "${cyan} [+] Installing Httpx ${reset}"
     go get -u github.com/projectdiscovery/httpx/cmd/httpx
