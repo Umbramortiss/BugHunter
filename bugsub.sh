@@ -38,7 +38,7 @@ echo " "
 echo "${yellow}----------------------xxxxxxx-------------------------${reset}"
 
 echo " "
-if [ -f /usr/local/bin/assetfinder ]
+if [ -f /usr/bin/assetfinder ]
 then
     echo "${magenta} [+] Running Assetfinder for Subdomain Enuneration${reset}"
     assetfinder -subs-only $DOM >> ~/Bugsubs/$DOM/Subdomains/assetfinder.txt
