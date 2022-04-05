@@ -71,7 +71,7 @@ echo "${cyan} [+] Successfully saved as amass.txt ${reset}"
 echo " "
 
 echo " "
-if [ -f /usr/local/bin/subfinder ]
+if [ -f /usr/bin/subfinder ]
 then
     echo "${magenta} [+] Running Subfinder for subdomain enumeration ${reset}"
     subfinder -d $DOM -o ~/Bugsubs/$DOM/Subdomains/subfinder.txt
