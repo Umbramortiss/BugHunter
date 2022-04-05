@@ -40,12 +40,12 @@ echo "${yellow} ----------------------xxxxxxx-------------------------${reset}"
 echo " "
 if [ -f /usr/bin/assetfinder ]
 then
-    echo "${magenta} [+] Running Assetfinder for Subdomain Enuneration${reset}"
+    echo "${magenta} [+] Running Assetfinder for Subdomain Enuneration ${reset}"
     assetfinder -subs-only $DOM >> ~/Bugsubs/$DOM/Subdomains/assetfinder.txt
 else
     echo "${cyan} [+] Installing Assetfinder ${reset}"
     go get -u github.com/tomnomnom/Assetfinder
-    echo "${magenta} [+] Running Assetfinder for subdomain enumeration${reset}"
+    echo "${magenta} [+] Running Assetfinder for subdomain enumeration ${reset}"
     assetfinder -subs-only $DOM >> ~/Bugsubs/$DOM/Subdomains/assetfinder.txt
 fi
 echo " "
@@ -57,13 +57,13 @@ echo "${yellow}-------------------------xxxxxxx-------------------${reset}"
 echo " "
 if [ -f /usr/bin/amass ]
 then
-    echo "${magenta} [+] Running Amass for subdomain enumeration${reset}"
+    echo "${magenta} [+] Running Amass for subdomain enumeration ${reset}"
     amass enum --passive -d $DOM > ~/Bugsubs/$DOM/Subdomains/amass.txt
 else
     echo "${cyan} [+] Installing Amass ${reset}"
-    echo "{cyan} [+] This may take few minutes hang tight... ${reset}"
+    echo "${cyan} [+] This may take few minutes hang tight... ${reset}"
     go get -u github.com/OWASP/Amass/...
-    echo "${magenta} [+] Running Amass for subm' enumeration${reset}"
+    echo "${magenta} [+] Running Amass for subm' enumeration ${reset}"
     amass enum --passive -d $DOM > ~/Bugsubs/$DOM/Subdomains/amass.txt
 fi
 echo " "
