@@ -35,7 +35,7 @@ echo "${cyan} [+] Starting Subdomain Enumeration ${reset}"
 echo " "
 
 #assetfinder
-echo "${yellow}----------------------xxxxxxx-------------------------${reset}"
+echo "${yellow} ----------------------xxxxxxx-------------------------${reset}"
 
 echo " "
 if [ -f /usr/bin/assetfinder ]
