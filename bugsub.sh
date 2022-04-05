@@ -73,12 +73,12 @@ echo " "
 echo " "
 if [ -f /usr/local/bin/subfinder ]
 then
-    echo "${magenta} [+] Running Subfinder for subdomain enumeration${reset}"
+    echo "${magenta} [+] Running Subfinder for subdomain enumeration ${reset}"
     subfinder -d $DOM -o ~/Bugsubs/$DOM/Subdomains/subfinder.txt
 else
     echo "${cyan} [+] Installing Subfinder ${reset}"
     go get -u -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder
-    echo "${magenta} [+] Running Subfinder for subdomain enumeration${reset}"
+    echo "${magenta} [+] Running Subfinder for subdomain enumeration ${reset}"
     subfinder -d $DOM -o ~/Bugsubs/$DOM/Subdomains/subfinder.txt
 fi
 echo " "
@@ -86,7 +86,7 @@ echo "${cyan} [+] Successfully saved as subfinder.txt ${reset}"
 echo " "
 
 #uniquesubdomains
-echo "${yellow} --------------------------xxxxxxxx---------------------${reset}"
+echo "${yellow} --------------------------xxxxxxxx--------------------- ${reset}"
 echo " "
 echo "${magenta} [+] Fetching unique domains ${reset}"
 echo " "
@@ -95,17 +95,17 @@ echo "${blue} [+] Successfully saved as unique.txt ${reset}"
 echo " "
 
 #sorting alive subdomains
-echo "${yellow} ---------------------------xxxxxxxx--------------------${reset}"
+echo "${yellow} ---------------------------xxxxxxxx-------------------- ${reset}"
 echo  " "
 if [ -f /usr/local/bin/httpx ]
 then
-    echo "${magenta} [+] Running Httpx for sorting alive subdomains${reset}"
+    echo "${magenta} [+] Running Httpx for sorting alive subdomains ${reset}"
     cat ~/Bugsubs/$DOM/Subdomains/unique.txt | httpx >> ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt
     cat ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt | sed 's/http\(.?*\)*:\/\///g' | sort -u ~/Bugsubs/$DOM/Subdomains/protoless-all-alive-subs.txt
 else
-    echo "${blue} [+] Installing Httpx ${reset}"
+    echo "${cyan} [+] Installing Httpx ${reset}"
     go get -u github.com/projectdiscovery/httpx/cmd/httpx
-    echo "${magenta} [+] Running Httpx for sorting alive subdomains${reset}"
+    echo "${magenta} [+] Running Httpx for sorting alive subdomains ${reset}"
     cat ~/Bugsubs/$DOM/Subdomains/unique.txt | httpx >> ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt
     cat ~/Bugsubs/$DOM/Subdomains/all-alive-subs.txt | sed 's/http\(.?*\)*:\/\///g' | sort -u > ~/Bugsubs/$DOM/Subdomains/protoless-all-alive-subs.txt
 fi
