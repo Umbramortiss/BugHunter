@@ -17,7 +17,7 @@ else
     mkdir ~/Bugsubs
 fi 
 
-if [ -d ~/Bugsubs/$DOM]
+if [ -d ~/Bugsubs/$DOM ]
 then
     echo " "
 else 
@@ -55,7 +55,7 @@ echo " "
 #amass
 echo "${yellow}-------------------------xxxxxxx-------------------${reset}"
 echo " "
-if [-f /usr/bin/amass]
+if [ -f /usr/bin/amass ]
 then
     echo "${magenta} [+] Running Amass for subdomain enumeration${reset}"
     amass enum --passive -d $DOM > ~/Bugsubs/$DOM/Subdomains/amass.txt
@@ -71,7 +71,7 @@ echo "${cyan} [+] Successfully saved as amass.txt ${reset}"
 echo " "
 
 echo " "
-if [ -f /usr/local/bin/subfinder]
+if [ -f /usr/local/bin/subfinder ]
 then
     echo "${magenta} [+] Running Subfinder for subdomain enumeration${reset}"
     subfinder -d $DOM -o ~/Bugsubs/$DOM/Subdomains/subfinder.txt
