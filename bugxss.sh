@@ -52,5 +52,5 @@ else
     gau --fc 404 --subs $DOM >> ~/Bughunt/$DOM/XSS/${DOM}-urls.txt
 fi
 echo " "
-echo "${cyan} [+] Running Gau for retriving URLs ${reset}"
+echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
 echo " "
