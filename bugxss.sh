@@ -10,7 +10,7 @@ white=`tput setaf 7`
 reset=`tput sgr0`
 
 
-read -p "Enter The Domain Name: " Domain
+read -p "Enter The Domain Name: " DOM
 
 if [ -d ~/Bughunt]
 then
@@ -27,11 +27,30 @@ else
     mkdir ~/Bughunt/$DOM
 fi
 
-if [ -d ~/Bughunt/$DOM/Subdomains ]
+if [ -d ~/Bughunt/$DOM/XSS ]
 then
     echo " "
 else
-mkdir ~/Bughunt/$DOM/Subdomains
+mkdir ~/Bughunt/$DOM/XSS
 fi
 
 echo "${cyan} [+] Fetching URLS ${reset}"
+echo " "
+
+#gau
+echo "${yellow}--------------------------xxxxxxx------------------------${reset}"
+
+echo " "
+if [ -f /usr/bin/gau ]
+then 
+    echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
+    gau --fc 404 --subs $DOM >> ~/Bughunt/$DOM/XSS/${DOM}-urls.txt
+else
+    echo "${cyan} [+] Installing Gau ${reset}"
+    go g
+    echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
+    gau --fc 404 --subs $DOM >> ~/Bughunt/$DOM/XSS/${DOM}-urls.txt
+fi
+echo " "
+echo "${cyan} [+] Running Gau for retriving URLs ${reset}"
+echo " "
