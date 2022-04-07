@@ -54,3 +54,5 @@ fi
 echo " "
 echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
 echo " "
+
+#Gxss
