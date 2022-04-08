@@ -102,13 +102,13 @@ echo " "
 if [ -f /usr/bin/dalfox ]
 then
     echo "${magenta} [+] Dalfox scanning for Xss"
-    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe > ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
     
 else
     echo "${cyan} [+] Installing Dalfox"
     go get -u github.com/hahwul/dalfox
     echo "${magenta} [+] Dalfox scanning for Xss"
-    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe > ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
 
 fi
 echo " "
