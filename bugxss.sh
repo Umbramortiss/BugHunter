@@ -65,7 +65,10 @@ then
     echo "{magenta} [+] Running httpx for sorting alive urls"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt
 else
-    echo "${yellow}---------------------**********----------------------${reset}"
+    echo "${cyan} [+] Installing Httpx ${reset}"
+    go get -u github.com/projectdiscovery/httpx/cmd/httpx
+    echo "{magenta} [+] Running httpx for sorting alive urls"
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt
 
 
 
