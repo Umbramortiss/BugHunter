@@ -63,7 +63,7 @@ echo " "
 if [ -f /usr/bin/local/httpx ]
 then
     echo "{magenta} [+] Running httpx for sorting alive subdomains"
-    httpx
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx
 
 
 
