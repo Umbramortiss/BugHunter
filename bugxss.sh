@@ -84,7 +84,7 @@ then
 else 
     echo "${cyan} [+] Installing Gxss"
     go get -u github.com/KathanP19/Gxss
-    echo "${magenta} [+] Running Gxss"
+    echo "${magenta} [+] Running Gxss for Refleced Parameters"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt | Gxss -c 100 | sed 's/=.*/=/'| sed 's/URL: //' | sort -u >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt
 
 #Dalfox
