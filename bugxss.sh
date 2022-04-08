@@ -27,11 +27,11 @@ else
     mkdir ~/Bughunt/Bugxss/$DOM
 fi
 
-if [ -d ~/Bughunt/Bugxss/$DOM/XSS ]
+if [ -d ~/Bughunt/Bugxss/$DOM/Xss ]
 then
     echo " "
 else
-mkdir ~/Bughunt/Bugxss/$DOM/XSS
+mkdir ~/Bughunt/Bugxss/$DOM/Xss
 fi
 
 echo "${cyan} [+] Fetching URLS ${reset}"
@@ -44,12 +44,12 @@ echo " "
 if [ -f /usr/bin/gau ]
 then 
     echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
-    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/XSS/${DOM}-urls.txt
+    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 else
     echo "${cyan} [+] Installing Gau ${reset}"
     go g
     echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
-    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/XSS/${DOM}-urls.txt
+    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 fi
 echo " "
 echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
@@ -62,4 +62,4 @@ echo " "
 if [ -f /usr/bin/Gxss ]
 then 
     echo "${magenta} [+] Running Gxss"
-    ~/Bughunt/Bugxss/$DOM/XSS
+    "cat" ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss 
