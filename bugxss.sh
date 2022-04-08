@@ -38,7 +38,7 @@ echo "${cyan} [+] Fetching URLS ${reset}"
 echo " "
 
 #gau
-echo "${yellow}--------------------------xxxxxxx------------------------${reset}"
+echo "${yellow}------------------------*********-----------------------${reset}"
 
 echo " "
 if [ -f /usr/bin/gau ]
@@ -56,3 +56,10 @@ echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
 echo " "
 
 #Gxss
+echo "${yellow}------------------------*********----------------------${reset}"
+
+echo " "
+if [ -f /usr/bin/Gxss ]
+then 
+    echo "${magenta} [+] Running Gxss"
+    ~/Bughunt/Bugxss/$DOM/XSS
