@@ -89,3 +89,9 @@ else
 
 #Dalfox
 echo "${yellow}-----------------------*********-------------------${reset}"
+
+echo " "
+if [ -f /usr/bin/dalfox ]
+then
+    echo "${magenta} [+] Dalfox scanning for Xss"
+    cat ~/Bughunt/
