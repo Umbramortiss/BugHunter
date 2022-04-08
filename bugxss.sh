@@ -94,4 +94,7 @@ echo " "
 if [ -f /usr/bin/dalfox ]
 then
     echo "${magenta} [+] Dalfox scanning for Xss"
-    cat ~/Bughunt/
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
+    
+else
+    echo 
