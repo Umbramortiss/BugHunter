@@ -88,3 +88,7 @@ then
 else 
     echo "${cyan} [+] Installing Gxss"
     go get -u github.com/KathanP19/Gxss
+    echo "${magenta} [+] Running Gxss"
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss -c 100 | sed 's/=.*/=/'| sed 's/URL: //' >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt
+
+    
