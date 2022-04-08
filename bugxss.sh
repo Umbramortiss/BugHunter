@@ -48,7 +48,7 @@ then
     gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 else
     echo "${cyan} [+] Installing Gau ${reset}"
-    go g
+    go get -u github.com/lc/gau/v2/cmd/gau
     echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
     gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 fi
