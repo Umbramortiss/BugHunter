@@ -70,7 +70,7 @@ else
     go get -u github.com/projectdiscovery/httpx/cmd/httpx
     echo "{magenta} [+] Running httpx for sorting alive urls"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt
-
+fi
 
 #Gxss
 echo "${yellow}------------------------*********----------------------${reset}"
@@ -86,6 +86,10 @@ else
     go get -u github.com/KathanP19/Gxss
     echo "${magenta} [+] Running Gxss for Refleced Parameters"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt | Gxss -c 100 | sed 's/=.*/=/'| sed 's/URL: //' | sort -u >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt
+fi
+echo " "
+echo "${white} [+] Successfully Saved As ${DOM}-reflecparm.txt ${reset}"
+
 
 #Dalfox
 echo "${yellow}-----------------------*********-------------------${reset}"
