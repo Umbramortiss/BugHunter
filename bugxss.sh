@@ -89,6 +89,7 @@ else
 fi
 echo " "
 echo "${white} [+] Successfully Saved As ${DOM}-reflecparm.txt ${reset}"
+echo " "
 
 
 #Dalfox
