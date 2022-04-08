@@ -55,6 +55,22 @@ echo " "
 echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
 echo " "
 
+
+#httpx
+echo "${yellow}-------------------------*********---------------------${reset}"
+
+echo " "
+if [ -f /usr/bin/local/httpx ]
+then
+    echo "{magenta} [+] Running httpx for sorting alive subdomains"
+    httpx
+
+
+
+
+
+
+
 #Gxss
 echo "${yellow}------------------------*********----------------------${reset}"
 
@@ -62,4 +78,4 @@ echo " "
 if [ -f /usr/bin/Gxss ]
 then 
     echo "${magenta} [+] Running Gxss"
-    "cat" ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss -c 100 -o 
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss -c 100 -o 
