@@ -62,8 +62,8 @@ echo "${yellow}-------------------------*********---------------------${reset}"
 echo " "
 if [ -f /usr/bin/local/httpx ]
 then
-    echo "{magenta} [+] Running httpx for sorting alive subdomains"
-    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent
+    echo "{magenta} [+] Running httpx for sorting alive urls"
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt
 
 
 
