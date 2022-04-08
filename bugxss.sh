@@ -112,5 +112,5 @@ else
 
 fi
 echo " "
-echo "${cyan} [+] Successfully Saved Results"
+echo "${cyan} [+] Successfully Saved Results As ${DOM}-xssScan.txt"
 echo " "
