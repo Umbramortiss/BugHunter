@@ -71,6 +71,9 @@ else
     echo "{magenta} [+] Running httpx for sorting alive urls"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt  | httpx -filter-code 403,401 -silent >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt
 fi
+echo " "
+echo "${white} [+] Successfully Saved As ${DOM}-alive-urls.txt"
+echo " "
 
 #Gxss
 echo "${yellow}------------------------*********----------------------${reset}"
