@@ -101,3 +101,8 @@ else
     go get -u github.com/hahwul/dalfox
     echo "${magenta} [+] Dalfox scanning for Xss"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
+
+fi
+echo " "
+echo "${cyan} [+] Successfully Saved Results"
+echo " "
