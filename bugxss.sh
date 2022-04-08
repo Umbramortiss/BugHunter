@@ -87,3 +87,5 @@ else
     echo "${magenta} [+] Running Gxss"
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-alive-urls.txt | Gxss -c 100 | sed 's/=.*/=/'| sed 's/URL: //' | sort -u >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt
 
+#Dalfox
+echo "${yellow}-----------------------*********-------------------${reset}"
