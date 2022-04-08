@@ -97,4 +97,7 @@ then
     cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
     
 else
-    echo 
+    echo "${cyan} [+] Installing Dalfox"
+    go get -u github.com/hahwul/dalfox
+    echo "${magenta} [+] Dalfox scanning for Xss"
+    cat ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-reflecparm.txt | dalfox pipe >> ~/Bughunt/Bugxss/Xss/${DOM}-xssScan.txt
