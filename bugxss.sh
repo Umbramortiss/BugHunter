@@ -62,4 +62,4 @@ echo " "
 if [ -f /usr/bin/Gxss ]
 then 
     echo "${magenta} [+] Running Gxss"
-    "cat" ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss 
+    "cat" ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt | Gxss -c 100 -o 
