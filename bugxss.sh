@@ -45,12 +45,12 @@ echo " "
 if [ -f /usr/bin/gau ]
 then 
     echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
-    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
+    gau --fc 404 --subs $DOM > ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 else
     echo "${cyan} [+] Installing Gau ${reset}"
     go get -u github.com/lc/gau/v2/cmd/gau
     echo "${magenta} [+] Running Gau for retriving URLs ${reset}"
-    gau --fc 404 --subs $DOM >> ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
+    gau --fc 404 --subs $DOM > ~/Bughunt/Bugxss/$DOM/Xss/${DOM}-urls.txt
 fi
 echo " "
 echo "${white} [+] Successfully saved as ${DOM}-url.txt ${reset}"
