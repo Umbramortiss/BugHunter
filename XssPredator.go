@@ -10,7 +10,7 @@ import(
 var domain string
 
 func dirCheck(){
-    _, err := os.Stat("~/Bughunt/Bugxss")
+    fileinfo, err := os.Stat("~/Bughunt/Bugxss")
     if os.IsNotExist(err) {
         os.mkdir("~/Bughunt/Bugxss")
         
@@ -19,7 +19,7 @@ func dirCheck(){
         }
         fmt.Print("Your vuln den was created")
     }
-    _, err := os.Stat("~/Bughunt/Bugxss/domain")
+    fileinfo, err := os.Stat("~/Bughunt/Bugxss/domain")
     if os.IsNotExist(err){
         os.mkdir("~/Bughunt/Bugxss/domain")
             if err != os.Stat("") {
@@ -27,7 +27,7 @@ func dirCheck(){
             }
         
     }
-    _, err := os.stat("~/Bughunt/Bugxss/domain/xss")
+    fileinfo, err := os.stat("~/Bughunt/Bugxss/domain/xss")
     if os.IsNotExist(err) {
         os.mkdir("~/Bughunt/Bugxss/domain/xss")
             if err != os.Stat("") {
@@ -38,7 +38,7 @@ func dirCheck(){
 
 func execute(){
     //
-    _, err := os.stat("/usr/bin/gau")
+    fileinfo, err := os.stat("/usr/bin/gau")
     if os.IsNotExist(err) {
         out, err := exec.Command("gau","--subs").Output()
         
