@@ -27,7 +27,7 @@ func dirCheck(){
             }
         
     }
-    if _, err := os.stat("~/Bughunt/Bugxss/domain/xss"); IsNotExist(err){
+    if _, err := os.stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err){
         os.mkdir("~/Bughunt/Bugxss/domain/xss")
             if err != nil {
             fmt.Printf("%s", err)
