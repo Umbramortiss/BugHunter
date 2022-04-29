@@ -19,10 +19,9 @@ func dirCheck(){
         }
         fmt.Print("Your vuln den was created")
     }
-    fileinfo, err := os.Stat("~/Bughunt/Bugxss/domain")
-    if os.IsNotExist(err){
+    if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err){
         os.mkdir("~/Bughunt/Bugxss/domain")
-            if err != os.Stat("") {
+            if err != nil {
             fmt.Printf("%s", err)
             }
         
