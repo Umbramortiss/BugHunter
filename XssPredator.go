@@ -10,7 +10,7 @@ var domain string
 
 func dirCheck() {
     if _,
-    err: = os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
+    err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
 
         if err != nil {
@@ -21,7 +21,7 @@ func dirCheck() {
     }
 
     if _,
-    err: = os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
+    err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
         if err != nil {
             fmt.Printf("%s", err)
@@ -29,7 +29,7 @@ func dirCheck() {
 
     }
     if _,
-    err: = os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
+    err := os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss/domain/xss", 0755)
         if err != nil {
             fmt.Printf("%s", err)
@@ -42,15 +42,15 @@ func dirCheck() {
 func execute() {
     //
     if _,
-    err: = os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
+    err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
         out,
-        err: = exec.Command("gau", "--subs").Output()
+        err := exec.Command("gau", "--subs").Output()
 
         if err != nil {
             fmt.Printf("%s", err)
         }
         fmt.Println("Running gau for fetching URLs")
-        output: = string(out[:])
+        output := string(out[:])
         fmt.Println(output)
 
     }
