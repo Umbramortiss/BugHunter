@@ -9,8 +9,7 @@ import(
 var domain string
 
 func dirCheck() {
-    if _,
-    err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
+    if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
 
         if err != nil {
@@ -20,8 +19,7 @@ func dirCheck() {
 
     }
 
-    if _,
-    err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
+    if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
         if err != nil {
             fmt.Printf("%s", err)
