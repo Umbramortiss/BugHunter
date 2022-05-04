@@ -9,6 +9,13 @@ import(
 
 var domain string
 
+func domName() {
+    fmt.Print("Enter your domain: ")
+    fmt.Scanf("%s", &domain)
+}
+
+
+/*
 func dirCheck() {
     if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
@@ -37,13 +44,14 @@ func dirCheck() {
     }
 
 }
+*/
 
 func execute() {
     //
     if _,
     err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
         out,
-        err := exec.Command("gau", "--subs").Output()
+        err := exec.Command("gau", "%s", "--subs", domain).Output()
 
         if err != nil {
             fmt.Printf("%s", err)
@@ -63,9 +71,8 @@ func main() {
     if runtime.GOOS == "windows" {
         fmt.Println("Can't execute this on a windows machine")
     } else {
-        fmt.Print("Enter your domain: ")
-        fmt.Scanf("%s" &domain)
-        dirCheck()
+        domName()
+      /*  dirCheck() */
         execute()
 
     }
