@@ -91,7 +91,7 @@ func subExec() {
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
-        err := exec.Command(sub)
+        err := exec.Command("amass", "enum", "--passive", "-d", domain)
     }
 
 
