@@ -65,7 +65,7 @@ func subExec() {
     if _,
     err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
         out,
-        err := exec.Command("assetfinder", "%s", "-subs-only", domain).Output()
+        err := exec.Command("assetfinder", "-subs-only", "%s",  domain).Output()
         
         if err != nil {
             fmt.Printf("%s", err)
@@ -73,6 +73,17 @@ func subExec() {
         fmt.Println("Running assetfinder for domain enumeration")
         output := string(out[:])
         fmt.Println(output)
+    }
+    
+    if _,
+    err := os.Stat("/usr/bin/subfinder"); os.IsNotExist(err) {
+        out,
+        err := exec.Command("subfinder", "-d","%s", domain ).Output()
+        
+        if err != nil {
+            fmt.Printf("%s", err)
+        }
+        fmt.Println("")
     }
 
 
