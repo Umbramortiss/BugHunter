@@ -61,7 +61,11 @@ func execute() {
         fmt.Println(output)
 
     }
-
+    
+    if _,
+    err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
+        err
+    }
 
 
 }
