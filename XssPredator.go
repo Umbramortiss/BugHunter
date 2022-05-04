@@ -83,7 +83,9 @@ func subExec() {
         if err != nil {
             fmt.Printf("%s", err)
         }
-        fmt.Println("")
+        fmt.Println("Running subfinder for domain enumeration")
+        output := string(out[:])
+        fmt.Println(output)
     }
 
 
