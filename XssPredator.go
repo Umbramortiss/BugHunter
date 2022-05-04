@@ -46,7 +46,7 @@ func dirCheck() {
 }
 */
 
-func execute() {
+func subExec() {
     //
     if _,
     err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
@@ -64,7 +64,8 @@ func execute() {
     
     if _,
     err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
-        err
+        out,
+        err := exec.Command("", "%s", )
     }
 
 
@@ -77,7 +78,7 @@ func main() {
     } else {
         domName()
       /*  dirCheck() */
-        execute()
+        subExec()
 
     }
 
