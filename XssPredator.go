@@ -54,7 +54,7 @@ func subExec() {
         err := exec.Command("gau", "%s", "--subs", domain).Output()
 
         if err != nil {
-            fmt.Printf("%s", err)
+            fmt.Printf("%f", err)
         }
         fmt.Println("Running gau for fetching URLs")
         output := string(out[:])
@@ -68,7 +68,7 @@ func subExec() {
         err := exec.Command("assetfinder", "-subs-only", "%s",  domain).Output()
         
         if err != nil {
-            fmt.Printf("%s", err)
+            fmt.Printf("%f", err)
         }
         fmt.Println("Running assetfinder for domain enumeration")
         output_2 := string(out[:])
@@ -81,17 +81,24 @@ func subExec() {
         err := exec.Command("subfinder", "-d","%s", domain ).Output()
         
         if err != nil {
-            fmt.Printf("%s", err)
+            fmt.Printf("%f", err)
         }
         fmt.Println("Running subfinder for domain enumeration")
         output_3 := string(out[:])
-        fmt.Println(output3)
+        fmt.Println(output_3)
     }
     
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
-        err := exec.Command("amass", "enum", "--passive", "-d", domain)
+        err := exec.Command("amass", "enum", "--passive", "-d", domain).Output()
+        
+        if err != nil {
+            fmt.Printf("%f", err)
+        }
+        fmt.Println("Running amass for domain enumeration")
+        output_4 := string(out[:])
+        fmt.Println(output_4)
     }
 
 
