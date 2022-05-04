@@ -71,8 +71,8 @@ func subExec() {
             fmt.Printf("%s", err)
         }
         fmt.Println("Running assetfinder for domain enumeration")
-        output := string(out[:])
-        fmt.Println(output)
+        output_2 := string(out[:])
+        fmt.Println(output_2)
     }
     
     if _,
@@ -84,8 +84,8 @@ func subExec() {
             fmt.Printf("%s", err)
         }
         fmt.Println("Running subfinder for domain enumeration")
-        output := string(out[:])
-        fmt.Println(output)
+        output_3 := string(out[:])
+        fmt.Println(output3)
     }
 
 
