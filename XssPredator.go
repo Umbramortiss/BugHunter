@@ -105,9 +105,11 @@ func subExec() {
         var result [output,output_2,output_3,output_4]
         for _, str := rang s {
             if _, ok := inResult[str]; !ok  {
-                
+                inResult[str] = true
+                result = append(result, str)
             }      
         }
+        return fmt.Printf(result)
     }
 
 
