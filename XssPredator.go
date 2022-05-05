@@ -103,8 +103,11 @@ func subExec() {
     func subSort(s []string) []string {
         inResult := make(map[string]bool)
         var result [output,output_2,output_3,output_4]
-        for _, 
-        
+        for _, str := rang s {
+            if _, ok := inResult[str]; !ok  {
+                
+            }      
+        }
     }
 
 
