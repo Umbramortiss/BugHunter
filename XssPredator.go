@@ -62,6 +62,7 @@ func subExec() {
 
     }
     
+func assetF() {
     if _,
     err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
         out,
@@ -74,7 +75,7 @@ func subExec() {
         output_2 := string(out[:])
         fmt.Println(output_2)
     }
-    
+}
     if _,
     err := os.Stat("/usr/bin/subfinder"); os.IsNotExist(err) {
         out,
