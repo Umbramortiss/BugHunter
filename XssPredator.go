@@ -76,6 +76,7 @@ func assetF() {
         fmt.Println(output_2)
     }
 }
+func subF() {
     if _,
     err := os.Stat("/usr/bin/subfinder"); os.IsNotExist(err) {
         out,
@@ -88,7 +89,8 @@ func assetF() {
         output_3 := string(out[:])
         fmt.Println(output_3)
     }
-    
+}
+func amass() {
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
@@ -101,6 +103,7 @@ func assetF() {
         output_4 := string(out[:])
         fmt.Println(output_4)
     }
+}
     func subSort(s []string) []string {
         inResult := make(map[string]bool)
         var result [output,output_2,output_3,output_4]
