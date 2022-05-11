@@ -47,7 +47,7 @@ func dirCheck() {
 */
 
 func subExec() {
-    //
+func gau(){
     if _,
     err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
         out,
@@ -61,6 +61,7 @@ func subExec() {
         fmt.Println(output)
 
     }
+}
     
 func assetF() {
     if _,
