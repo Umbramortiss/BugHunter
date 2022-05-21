@@ -128,19 +128,20 @@ func amassF(wg *sync.WaitGroup) {
         }
         return fmt.Printf(result)
     }
- func run() {
-     for 
- }
+ 
 
 
 func main() {
+    
+    var wg sync.WaitGroup
 
     if runtime.GOOS == "windows" {
         fmt.Println("Can't execute this on a windows machine")
     } else {
+        
         domName()
       /*  dirCheck() */
-        subExec()
+        
 
     }
 
