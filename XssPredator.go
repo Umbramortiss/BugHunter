@@ -143,7 +143,12 @@ func main() {
         domName()
       /*  dirCheck() */
         wg.Add(4)
-        go gau()
+        go gau(&wg)
+        go assetF(&wg)
+        go subF(&wg)
+        go amassF(&wg)
+        
+        fmt.Println("sorting or filtering results...")
 
     }
 
