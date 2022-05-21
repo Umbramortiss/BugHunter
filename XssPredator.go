@@ -79,8 +79,8 @@ func assetF(wg *sync.WaitGroup) {
             fmt.Printf("%f", err)
         }
         fmt.Println("Running assetfinder for domain enumeration")
-        output_2 := string(out[:])
-        fmt.Println(output_2)
+        output := string(out[:])
+        fmt.Println(output)
     }
 }
 func subF(wg *sync.WaitGroup) {
@@ -96,8 +96,8 @@ func subF(wg *sync.WaitGroup) {
             fmt.Printf("%f", err)
         }
         fmt.Println("Running subfinder for domain enumeration")
-        output_3 := string(out[:])
-        fmt.Println(output_3)
+        output := string(out[:])
+        fmt.Println(output)
     }
 }
 func amassF(wg *sync.WaitGroup) {
@@ -113,8 +113,8 @@ func amassF(wg *sync.WaitGroup) {
             fmt.Printf("%f", err)
         }
         fmt.Println("Running amass for domain enumeration")
-        output_4 := string(out[:])
-        fmt.Println(output_4)
+        output := string(out[:])
+        fmt.Println(output)
     }
 }
     func subSort(s []string) []string {
