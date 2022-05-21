@@ -66,7 +66,10 @@ func gau(wg *sync.WaitGroup){
     }
 }
     
-func assetF(wg ) {
+func assetF(wg *sync.WaitGroup) {
+    
+    defer wg.Done()
+    
     if _,
     err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
         out,
@@ -80,7 +83,10 @@ func assetF(wg ) {
         fmt.Println(output_2)
     }
 }
-func subF() {
+func subF(wg *sync.WaitGroup) {
+    
+    defer wg.Done()
+    
     if _,
     err := os.Stat("/usr/bin/subfinder"); os.IsNotExist(err) {
         out,
@@ -94,7 +100,10 @@ func subF() {
         fmt.Println(output_3)
     }
 }
-func amassF() {
+func amassF(wg *sync.WaitGroup) {
+    
+    defer wg.Done()
+    
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
