@@ -91,7 +91,7 @@ func subF() {
         fmt.Println(output_3)
     }
 }
-func amass() {
+func amassF() {
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
@@ -116,7 +116,9 @@ func amass() {
         }
         return fmt.Printf(result)
     }
-
+ func run() {
+     for 
+ }
 
 }
 
