@@ -46,8 +46,11 @@ func dirCheck() {
 }
 */
 
-func subExec() {
-func gau(){
+
+func gau(wg *sync.WaitGroup){
+    
+    defer wg.Done()
+    
     if _,
     err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
         out,
@@ -63,7 +66,7 @@ func gau(){
     }
 }
     
-func assetF() {
+func assetF(wg ) {
     if _,
     err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
         out,
@@ -120,7 +123,6 @@ func amassF() {
      for 
  }
 
-}
 
 func main() {
 
