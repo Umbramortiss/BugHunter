@@ -149,6 +149,8 @@ func main() {
         go amassF(&wg)
         
         fmt.Println("sorting or filtering results...")
+        wg.Wait()
+        fmt.Println("Done!")
 
     }
 
