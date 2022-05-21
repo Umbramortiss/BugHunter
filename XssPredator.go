@@ -5,6 +5,7 @@ import(
     "os/exec"
     "os"
     "runtime"
+    "sync"
 )
 
 var domain string
