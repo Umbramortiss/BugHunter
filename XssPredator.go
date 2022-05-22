@@ -108,7 +108,7 @@ func amassF(wg *sync.WaitGroup) {
     if _,
     err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
         out,
-        err := exec.Command("amass", "enum", "--passive", "-d", domain).Output()
+        err := exec.Command("amass", "enum", "--passive", "-d","%s", domain).Output()
         
         if err != nil {
             fmt.Printf("%f", err)
