@@ -91,7 +91,7 @@ func subF(wg *sync.WaitGroup) {
     if _,
     err := os.Stat("/usr/bin/subfinder"); os.IsNotExist(err) {
         out,
-        err := exec.Command("subfinder", "-d","%s", domain ).Output()
+        err := exec.Command("subfinder", "-d","%s", domain).Output()
         
         if err != nil {
             fmt.Printf("%f", err)
