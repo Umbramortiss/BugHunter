@@ -9,6 +9,7 @@ import (
 )
 
 var domain string
+var output string
 
 func domName() {
 	fmt.Print("Enter your domain: ")
@@ -59,11 +60,11 @@ func gau(wg *sync.WaitGroup) {
 			fmt.Printf("%f", err)
 		}
 		fmt.Println("Running gau for fetching URLs")
-		urls := string(out[:])
-		fmt.Println(urls)
+		output := string(out[:])
+		fmt.Println(output)
 
 	}
-	
+
 }
 
 func httpx(wg *sync.WaitGroup) {
