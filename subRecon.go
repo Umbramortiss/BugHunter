@@ -9,13 +9,15 @@ import (
 )
 
 var domain string
+var output string
+var liveOutput string
 
 func domName() {
 	fmt.Print("Enter your domain: ")
 	fmt.Scanf("%s", &domain)
 }
 
-/*
+
 func dirCheck() {
     if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
@@ -44,16 +46,18 @@ func dirCheck() {
     }
 
 }
-*/
+
 
 func gau(wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
-	if _,
-		err := os.Stat("/usr/bin/gau"); os.IsNotExist(err) {
-		out,
-			err := exec.Command("gau", "%s", "--subs", domain).Output()
+        if err != nil {
+            fmt.Printf("%f", err)
+        }
+        fmt.Println("Running gau for fetching URLs")
+        urls := string(out[:])
+        fmt.Println(urls)
 
 		if err != nil {
 			fmt.Printf("%f", err)
@@ -64,45 +68,40 @@ func gau(wg *sync.WaitGroup) {
 
 	}
 	
-}
+
 
 func httpx(wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
 	if _,
-		err := os.Stat("/usr/bin/httpx"); os.IsNotExist(err) {
+	err := os.Stat("/usr/bin/httpx"); os.IsNotExist(err){
 		out,
-			err := exec.Command("httpx", "%s", "-f urls", "-silent", domain).Output()
+		err := exec.Command("httpx", "%s", "-f urls").Output
 
-		if err != nil {
-			fmt.Printf("%f", err)
-
-		}
-		fmt.Println("Running httpx for live URLs")
-		liveOutput := string(out[:])
-		fmt.Println(liveOutput)
+        if err != nil {
+            fmt.Printf("%f", err)
+        }
+        fmt.Println("Running httpx for sorting live domains")
+        output := string(out[:])
+        fmt.Println(output)
 
 	}
 
 }
 
-/*
+func subSort(s []string) []string {
+	inResult := make(map[string]bool)
+	var result [output,output_2,output_3,output_4]
+	for _, str := rang s {
+		if _, ok := inResult[str]; !ok  {
+			inResult[str] = true
+			result = append(result, str)
+		}      
+	}
+	return fmt.Printf(result)
+}
 
-   func subSort(s []string) []string {
-       inResult := make(map[string]bool)
-       var result [output,output_2,output_3,output_4]
-       for _, str := rang s {
-           if _, ok := inResult[str]; !ok  {
-               inResult[str] = true
-               result = append(result, str)
-           }
-       }
-       return fmt.Printf(result)
-   }
-
-
-*/
 
 func main() {
 
