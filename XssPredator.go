@@ -16,7 +16,7 @@ func domName() {
 }
 
 
-/*
+
 func dirCheck() {
     if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
@@ -45,7 +45,7 @@ func dirCheck() {
     }
 
 }
-*/
+
 
 
 func gau(wg *sync.WaitGroup){
@@ -121,7 +121,7 @@ func amassF(wg *sync.WaitGroup) {
     func subSort(s []string) []string {
         inResult := make(map[string]bool)
         var result [output,output_2,output_3,output_4]
-        for _, str := rang s {
+        for _, str := range s {
             if _, ok := inResult[str]; !ok  {
                 inResult[str] = true
                 result = append(result, str)
