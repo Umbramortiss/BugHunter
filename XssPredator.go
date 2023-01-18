@@ -18,32 +18,23 @@ func domName() {
 
 
 func dirCheck() {
-    if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss", 0755)
+    homeDir, _ := os.UserHomeDir()
+    basePath := filepath.Join(homeDir, "Bughunt", "Bugxss")
+    domainPath := filepath.Join(basePath, "domain")
+    xssPath := filepath.Join(domainPath, "xss")
 
-        if err != nil {
-            fmt.Printf("%s", err)
-        }
+    if _, err := os.Stat(basePath); os.IsNotExist(err) {
+        os.MkdirAll(basePath, 0755)
         fmt.Print("Your vuln den was created")
-
     }
 
-    if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
-        if err != nil {
-            fmt.Printf("%s", err)
-        }
-
-    }
-    if _,
-    err := os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss/domain/xss", 0755)
-        if err != nil {
-            fmt.Printf("%s", err)
-        }
-
+    if _, err := os.Stat(domainPath); os.IsNotExist(err) {
+        os.MkdirAll(domainPath, 0755)
     }
 
+    if _, err := os.Stat(xssPath); os.IsNotExist(err) {
+        os.MkdirAll(xssPath, 0755)
+    }
 }
 
 
