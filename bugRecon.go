@@ -16,7 +16,37 @@ func domName() {
 	fmt.Scanf("%s", &domain)
 }
 
-/*
+func installTool(tool string) {
+	cmd := exec.Command("sh", "-c", fmt.Sprintf("which %s", tool))
+	if err := cmd.Run(); err != nil {
+		fmt.Printf("%s not found, installing...\n", tool)
+		switch tool {
+		case "subfinder":
+			if runtime.GOOS == "windows" {
+				fmt.Println("Subfinder installation is not supported on Windows")
+				return
+			}
+			if err := exec.Command("sh", "-c", "curl -sL https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin v2.2.0").Run(); err != nil {
+				fmt.Printf("Error installing subfinder: %s\n", err)
+				return
+			}
+		case "dirsearch":
+			if err := exec.Command("python3", "-m", "pip", "install", "--user", "dirsearch").Run(); err != nil {
+				fmt.Printf("Error installing dirsearch: %s\n", err)
+				return
+			}
+		case "nmap":
+			if err := exec.Command("sudo", "apt-get", "install", "-y", "nmap").Run(); err != nil {
+				fmt.Printf("Error installing nmap: %s\n", err)
+				return
+			}
+		}
+		fmt.Printf("%s installed successfully\n", tool)
+	}
+}
+
+
+
 func dirCheck() {
     if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss", 0755)
@@ -27,7 +57,7 @@ func dirCheck() {
         fmt.Print("Your vuln den was created")
 
     }
-https://www.td.com/
+//https://www.td.com/
     if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
         os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
         if err != nil {
@@ -45,7 +75,7 @@ https://www.td.com/
     }
 
 }
-*/
+
 
 func gau(wg *sync.WaitGroup) {
 
@@ -104,6 +134,40 @@ func assetf(wg *sync.WaitGroup) {
 		fmt.Println(output)
 	}
 }
+func amassF(wg *sync.WaitGroup) {
+
+	defer wg.Done()
+
+	if _,
+		err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
+		out,
+			err := exec.Command("amass", "enum", "--passive", "-d", "%s", domain).Output()
+
+		if err != nil {
+			fmt.Printf("%f", err)
+		}
+		fmt.Println("Running amass for domain enumeration")
+		output := string(out[:])
+		fmt.Println(output)
+	}
+}
+func subF(wg *sync.WaitGroup) {
+
+	defer wg.Done()
+
+	if _,
+		err := exec.LookPath("subfinder"); err != nil {
+		out,
+			err := exec.Command("subfinder", "-d", domain).Output()
+
+		if err != nil {
+			fmt.Printf("Error running subfinder: %s", err)
+		}
+		fmt.Println("Running subfinder for domain enumeration")
+		output := string(out[:])
+		fmt.Println(output)
+	}
+}
 
 func subSort(s []string) []string {
 	inResult := make(map[string]bool)
@@ -126,17 +190,22 @@ func main() {
 	} else {
 
 		domName()
-		//dirCheck()
-		wg.Add(2)
+		dirCheck()
+		wg.Add(4)
 		go gau(&wg)
 		//go httpx(&wg)
 		go assetf(&wg)
-		//go subF(&wg)
-		//go amassF(&wg)
+		go subF(&wg)
+		go amassF(&wg)
 		wg.Wait()
 		fmt.Println("Finished all the task")
 		out := subSort(output)
-		fmt.Println(out)
+		fmt.Println(output)
+		myFile, err := os.Create("/Bughunt/Bugxss/domain/%s.csv")
+		if err != nil {
+			log.Fatal(err)
+		}
+		err := ioutil.WriteFile("%s.csv", output, 0777)
 		fmt.Println("Done!")
 
 	}
