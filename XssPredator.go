@@ -9,7 +9,7 @@ import (
 )
 
 var domain string
-var output string
+var output []string
 
 func domName() {
 	fmt.Print("Enter your domain: ")
@@ -49,21 +49,21 @@ func gau(wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
-	if _,
-		err := exec.LookPath("gau"); err != nil {
-		out,
-			err := exec.Command("gau", domain, "--subs").Output()
+	if _, err := os.Stat("/usr/local/bin/gau"); os.IsNotExist(err) {
 
+		out, err := exec.Command("gau", "%s", "--subs", domain).Output()
+		fmt.Println(out)
 		if err != nil {
-			fmt.Printf("Error running gau: %s", err)
+			fmt.Println(err)
 		}
+
 		fmt.Println("Running gau for fetching URLs")
 		output := string(out[:])
 		fmt.Println(output)
 
 	}
-}
 
+}
 func assetF(wg *sync.WaitGroup) {
 
 	defer wg.Done()
@@ -117,7 +117,7 @@ func amassF(wg *sync.WaitGroup) {
 }
 func subSort(s []string) []string {
 	inResult := make(map[string]bool)
-	var result [output]string
+	var result []string
 	for _, str := range s {
 		if _, ok := inResult[str]; !ok {
 			inResult[str] = true
@@ -136,15 +136,17 @@ func main() {
 	} else {
 
 		domName()
-		/*  dirCheck() */
-		wg.Add(4)
+		//dirCheck()
+		wg.Add(2)
 		go gau(&wg)
-		go assetF(&wg)
-		go subF(&wg)
-		go amassF(&wg)
-
-		fmt.Println("sorting or filtering results...")
+		//go httpx(&wg)
+		go assetf(&wg)
+		//go subF(&wg)
+		//go amassF(&wg)
 		wg.Wait()
+		fmt.Println("Finished all the task")
+		out := subSort(output)
+		fmt.Println(out)
 		fmt.Println("Done!")
 
 	}
