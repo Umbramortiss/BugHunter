@@ -16,34 +16,37 @@ func domName() {
 	fmt.Scanf("%s", &domain)
 }
 
+
+/*
 func dirCheck() {
-	if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
-		os.Mkdir("~/Bughunt/Bugxss", 0755)
+    if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
+        os.Mkdir("~/Bughunt/Bugxss", 0755)
 
-		if err != nil {
-			fmt.Printf("%s", err)
-		}
-		fmt.Print("Your vuln den was created")
+        if err != nil {
+            fmt.Printf("%s", err)
+        }
+        fmt.Print("Your vuln den was created")
 
-	}
+    }
 
-	if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
-		os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
-		if err != nil {
-			fmt.Printf("%s", err)
-		}
+    if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
+        os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
+        if err != nil {
+            fmt.Printf("%s", err)
+        }
 
-	}
-	if _,
-		err := os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
-		os.Mkdir("~/Bughunt/Bugxss/domain/xss", 0755)
-		if err != nil {
-			fmt.Printf("%s", err)
-		}
+    }
+    if _,
+    err := os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
+        os.Mkdir("~/Bughunt/Bugxss/domain/xss", 0755)
+        if err != nil {
+            fmt.Printf("%s", err)
+        }
 
-	}
+    }
 
 }
+*/
 
 func gau(wg *sync.WaitGroup) {
 
@@ -115,17 +118,19 @@ func amassF(wg *sync.WaitGroup) {
 		fmt.Println(output)
 	}
 }
-func subSort(s []string) []string {
-	inResult := make(map[string]bool)
-	var result []string
-	for _, str := range s {
-		if _, ok := inResult[str]; !ok {
-			inResult[str] = true
-			result = append(result, str)
-		}
-	}
-	return result
-}
+    func subSort(s []string) []string {
+        inResult := make(map[string]bool)
+        var result [output,output_2,output_3,output_4]
+        for _, str := rang s {
+            if _, ok := inResult[str]; !ok  {
+                inResult[str] = true
+                result = append(result, str)
+            }      
+        }
+        return fmt.Printf(result)
+    }
+ 
+
 
 func main() {
 
