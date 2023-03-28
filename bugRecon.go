@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"runtime"
 	"sync"
+	"io/ioutil"
 )
 
 var domain string
@@ -48,8 +49,8 @@ func installTool(tool string) {
 
 
 func dirCheck() {
-    if _, err := os.Stat("~/Bughunt/Bugxss"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss", 0755)
+    if _, err := os.Stat("$HOME/Bughunt/Bugxss"); os.IsNotExist(err) {
+        os.Mkdir("$HOME/Bughunt/Bugxss", 0755)
 
         if err != nil {
             fmt.Printf("%s", err)
@@ -58,16 +59,16 @@ func dirCheck() {
 
     }
 //https://www.td.com/
-    if _, err := os.Stat("~/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss/domain", 0755)
+    if _, err := os.Stat("$HOME/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
+        os.Mkdir("$HOME/Bughunt/Bugxss/domain", 0755)
         if err != nil {
             fmt.Printf("%s", err)
         }
 
     }
     if _,
-    err := os.Stat("~/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
-        os.Mkdir("~/Bughunt/Bugxss/domain/xss", 0755)
+    err := os.Stat("$HOME/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
+        os.Mkdir("$HOME/Bughunt/Bugxss/domain/xss", 0755)
         if err != nil {
             fmt.Printf("%s", err)
         }
@@ -179,6 +180,24 @@ func subSort(s []string) []string {
 		}
 	}
 	return result
+} 
+
+func writeToCSV(fileName string, data []string)error {
+	f, err := os.Create(fileName)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	w := csv.NewWriter(f)
+	defer w.Flush()
+
+	for _, file := range data {
+		if err := w.Write([]string{file};err != nil){
+			return err
+		}
+	}
+	return nil
 }
 
 func main() {
@@ -200,12 +219,14 @@ func main() {
 		wg.Wait()
 		fmt.Println("Finished all the task")
 		out := subSort(output)
-		fmt.Println(output)
-		myFile, err := os.Create("/Bughunt/Bugxss/domain/%s.csv")
-		if err != nil {
-			log.Fatal(err)
+		fmt.Println(out)
+		csvFileName := domain + ".csv"
+		if err := writeToCSV(csvFileName, out); err != nil {
+			fmt.Println("Error writing CSV file:", err)
+		}else{
+			fmt.Println("Saved output to CSV file:",csvFileName )
 		}
-		err := ioutil.WriteFile("%s.csv", output, 0777)
+
 		fmt.Println("Done!")
 
 	}
