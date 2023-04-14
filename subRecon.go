@@ -105,6 +105,12 @@ func assetf(wg *sync.WaitGroup) {
 	}
 }
 
+func subLis3r(wg *sync.WaitGroup){
+	defer wg.Done()
+
+	if _, err := os.Stat
+}
+
 func subSort(s []string) []string {
 	inResult := make(map[string]bool)
 	var result []string

@@ -120,8 +120,9 @@ func amassF(wg *sync.WaitGroup) {
 }
     func subSort(s []string) []string {
         inResult := make(map[string]bool)
-        var result [output,output_2,output_3,output_4]
-        for _, str := rang s {
+
+        var result [output]
+        for _, str := range s {
             if _, ok := inResult[str]; !ok  {
                 inResult[str] = true
                 result = append(result, str)

@@ -170,6 +170,22 @@ func subF(wg *sync.WaitGroup) {
 	}
 }
 
+func subList3r(wg *sync.WaitGroup){
+	defer wg.Done()
+
+	if _, err := os.Stat("/usr/bin/sublist3r"); os.IsNotExist(err){
+		out, err := exec.Command("sublist3r", "-b", "-d", domain).Output()
+
+		if err != nil {
+			fmt.Printf("Error running sublist3r: %s", err)
+		}
+		fmt.Println("Running sublist3r for domain enumeration")
+		output := string(out[:])
+		fmt.Println(output)
+	}
+}
+
+
 func subSort(s []string) []string {
 	inResult := make(map[string]bool)
 	var result []string
