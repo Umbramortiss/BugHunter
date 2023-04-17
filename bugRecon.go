@@ -11,6 +11,8 @@ import (
 
 var domain string
 var output []string
+var liveOutput []string
+
 
 func domName() {
 	fmt.Print("Enter your domain: ")
@@ -91,7 +93,7 @@ func gau(wg *sync.WaitGroup) {
 		}
 
 		fmt.Println("Running gau for fetching URLs")
-		output := string(out[:])
+		output = append(output, string(out[:]))
 		fmt.Println(output)
 
 	}
@@ -104,8 +106,19 @@ func httpx(wg *sync.WaitGroup) {
 
 	if _,
 		err := os.Stat("/usr/local/bin/httpx"); os.IsNotExist(err) {
+			file, err := ioutil.TempFile("","httpx")
+			if err =! nil {
+				fmt.Printf("Error creating temp file: %s", err)
+				return
+			}
+			defer os.Remove(file.Name())
+
+			if _, err := file.WriteString(strings.Join(output, "\n")); err != nil {
+				fmt.Printf("Error writing to temp file: %s", err)
+				return
+			}
 		out,
-			err := exec.Command("httpx", "%s", "-silent", domain).Output()
+			err := exec.Command("httpx", "-l",file.Name(), "--no-color", domain).Output()
 		fmt.Println(err)
 		if err != nil {
 			fmt.Printf("%s", err)
@@ -131,7 +144,7 @@ func assetf(wg *sync.WaitGroup) {
 			fmt.Printf("Error running assetfinder: %s", err)
 		}
 		fmt.Println("Running assetfinder for domain enumeration")
-		output := string(out[:])
+		output = append(output, string(out[:]))
 		fmt.Println(output)
 	}
 }
@@ -148,7 +161,7 @@ func amassF(wg *sync.WaitGroup) {
 			fmt.Printf("%f", err)
 		}
 		fmt.Println("Running amass for domain enumeration")
-		output := string(out[:])
+		output = append(output, string(out[:]))
 		fmt.Println(output)
 	}
 }
@@ -165,7 +178,7 @@ func subF(wg *sync.WaitGroup) {
 			fmt.Printf("Error running subfinder: %s", err)
 		}
 		fmt.Println("Running subfinder for domain enumeration")
-		output := string(out[:])
+		output = append(output, string(out[:]))
 		fmt.Println(output)
 	}
 }
@@ -180,7 +193,7 @@ func subList3r(wg *sync.WaitGroup){
 			fmt.Printf("Error running sublist3r: %s", err)
 		}
 		fmt.Println("Running sublist3r for domain enumeration")
-		output := string(out[:])
+		output = append(output, string(out[:]))
 		fmt.Println(output)
 	}
 }
@@ -209,7 +222,7 @@ func writeToCSV(fileName string, data []string)error {
 	defer w.Flush()
 
 	for _, file := range data {
-		if err := w.Write([]string{file};err != nil){
+		if err := w.Write([]string{file});err != nil{
 			return err
 		}
 	}
@@ -226,15 +239,16 @@ func main() {
 
 		domName()
 		dirCheck()
-		wg.Add(4)
+		wg.Add(6)
 		go gau(&wg)
-		//go httpx(&wg)
+		go httpx(&wg)
 		go assetf(&wg)
 		go subF(&wg)
 		go amassF(&wg)
+		go subList3r(&wg)
 		wg.Wait()
 		fmt.Println("Finished all the task")
-		out := subSort(output)
+		out := subSort(liveOutput)
 		fmt.Println(out)
 		csvFileName := domain + ".csv"
 		if err := writeToCSV(csvFileName, out); err != nil {
