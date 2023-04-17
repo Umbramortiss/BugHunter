@@ -86,7 +86,7 @@ func gau(wg *sync.WaitGroup) {
 
 	if _, err := os.Stat("/usr/local/bin/gau"); os.IsNotExist(err) {
 
-		out, err := exec.Command("gau", "%s", "--subs", domain).Output()
+		out, err := exec.Command("gau", "--subs", domain).Output()
 		fmt.Println(out)
 		if err != nil {
 			fmt.Println(err)
@@ -155,7 +155,7 @@ func amassF(wg *sync.WaitGroup) {
 	if _,
 		err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
 		out,
-			err := exec.Command("amass", "enum", "--passive", "-d", "%s", domain).Output()
+			err := exec.Command("amass", "enum", "--passive", "-d", domain).Output()
 
 		if err != nil {
 			fmt.Printf("%f", err)
