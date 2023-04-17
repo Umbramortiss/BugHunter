@@ -107,7 +107,7 @@ func httpx(wg *sync.WaitGroup) {
 	if _,
 		err := os.Stat("/usr/local/bin/httpx"); os.IsNotExist(err) {
 			file, err := ioutil.TempFile("","httpx")
-			if err =! nil {
+			if err != nil {
 				fmt.Printf("Error creating temp file: %s", err)
 				return
 			}
