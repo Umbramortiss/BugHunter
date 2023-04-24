@@ -19,36 +19,6 @@ func domName() {
 	fmt.Scanf("%s", &domain)
 }
 
-func installTool(tool string) {
-	cmd := exec.Command("sh", "-c", fmt.Sprintf("which %s", tool))
-	if err := cmd.Run(); err != nil {
-		fmt.Printf("%s not found, installing...\n", tool)
-		switch tool {
-		case "subfinder":
-			if runtime.GOOS == "windows" {
-				fmt.Println("Subfinder installation is not supported on Windows")
-				return
-			}
-			if err := exec.Command("sh", "-c", "curl -sL https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin v2.2.0").Run(); err != nil {
-				fmt.Printf("Error installing subfinder: %s\n", err)
-				return
-			}
-		case "dirsearch":
-			if err := exec.Command("python3", "-m", "pip", "install", "--user", "dirsearch").Run(); err != nil {
-				fmt.Printf("Error installing dirsearch: %s\n", err)
-				return
-			}
-		case "nmap":
-			if err := exec.Command("sudo", "apt-get", "install", "-y", "nmap").Run(); err != nil {
-				fmt.Printf("Error installing nmap: %s\n", err)
-				return
-			}
-		}
-		fmt.Printf("%s installed successfully\n", tool)
-	}
-}
-
-
 
 func dirCheck() {
     if _, err := os.Stat("$HOME/Bughunt/Bugxss"); os.IsNotExist(err) {
@@ -84,7 +54,7 @@ func gau(wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
-	if _, err := os.Stat("/usr/local/bin/gau"); os.IsNotExist(err) {
+	if _, err := os.Stat("/usr/bin/gau"); err == nil {
 
 		out, err := exec.Command("gau", "--subs", domain).Output()
 		fmt.Println(out)
@@ -96,6 +66,8 @@ func gau(wg *sync.WaitGroup) {
 		output = append(output, string(out[:]))
 		fmt.Println(output)
 
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 
 }
@@ -105,7 +77,7 @@ func httpx(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	if _,
-		err := os.Stat("/usr/local/bin/httpx"); os.IsNotExist(err) {
+		err := os.Stat("/usr/bin/httpx"); err == nil {
 			file, err := ioutil.TempFile("","httpx")
 			if err != nil {
 				fmt.Printf("Error creating temp file: %s", err)
@@ -128,6 +100,8 @@ func httpx(wg *sync.WaitGroup) {
 		liveOutput := string(out[:])
 		fmt.Println(liveOutput)
 
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 
 }
@@ -136,7 +110,7 @@ func assetf(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	if _,
-		err := os.Stat("/usr/bin/assetfinder"); os.IsNotExist(err) {
+		err := os.Stat("/usr/bin/assetfinder"); err == nil{
 		out,
 			err := exec.Command("assetfinder", "-subs-only", domain).Output()
 
@@ -146,6 +120,8 @@ func assetf(wg *sync.WaitGroup) {
 		fmt.Println("Running assetfinder for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 }
 func amassF(wg *sync.WaitGroup) {
@@ -153,7 +129,7 @@ func amassF(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	if _,
-		err := os.Stat("/usr/bin/amass"); os.IsNotExist(err) {
+		err := os.Stat("/usr/bin/amass"); err == nil {
 		out,
 			err := exec.Command("amass", "enum", "--passive", "-d", domain).Output()
 
@@ -163,6 +139,8 @@ func amassF(wg *sync.WaitGroup) {
 		fmt.Println("Running amass for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 }
 func subF(wg *sync.WaitGroup) {
@@ -170,7 +148,7 @@ func subF(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	if _,
-		err := exec.LookPath("subfinder"); err != nil {
+		err := exec.LookPath("subfinder"); err == nil {
 		out,
 			err := exec.Command("subfinder", "-d", domain).Output()
 
@@ -180,13 +158,15 @@ func subF(wg *sync.WaitGroup) {
 		fmt.Println("Running subfinder for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 }
 
 func subList3r(wg *sync.WaitGroup){
 	defer wg.Done()
 
-	if _, err := os.Stat("/usr/bin/sublist3r"); os.IsNotExist(err){
+	if _, err := os.Stat("/usr/bin/sublist3r"); err == nil{
 		out, err := exec.Command("sublist3r", "-b", "-d", domain).Output()
 
 		if err != nil {
@@ -195,6 +175,8 @@ func subList3r(wg *sync.WaitGroup){
 		fmt.Println("Running sublist3r for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
+	}else if os.IsNotExist(err) {
+		fmt.Println("gau command not found")
 	}
 }
 
@@ -238,7 +220,7 @@ func main() {
 	} else {
 
 		domName()
-		dirCheck()
+		//dirCheck()
 		wg.Add(6)
 		go gau(&wg)
 		go httpx(&wg)
