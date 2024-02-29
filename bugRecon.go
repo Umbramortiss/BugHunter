@@ -20,6 +20,35 @@ func domName() {
 	fmt.Scanf("%s", &domain)
 }
 
+func dirCheck() {
+	if _, err := os.Stat("$HOME/Bughunt/Bugxss"); os.IsNotExist(err) {
+		os.Mkdir("$HOME/Bughunt/Bugxss", 0755)
+
+		if err != nil {
+			fmt.Printf("%s", err)
+		}
+		fmt.Print("Your vuln den was created")
+
+	}
+	//https://www.td.com/
+	if _, err := os.Stat("$HOME/Bughunt/Bugxss/domain"); os.IsNotExist(err) {
+		os.Mkdir("$HOME/Bughunt/Bugxss/domain", 0755)
+		if err != nil {
+			fmt.Printf("%s", err)
+		}
+
+	}
+	if _,
+		err := os.Stat("$HOME/Bughunt/Bugxss/domain/xss"); os.IsNotExist(err) {
+		os.Mkdir("$HOME/Bughunt/Bugxss/domain/xss", 0755)
+		if err != nil {
+			fmt.Printf("%s", err)
+		}
+
+	}
+
+}
+
 func gau(wg *sync.WaitGroup) {
 
 	defer wg.Done()
