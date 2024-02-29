@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"strings"
-	"sync"
 	"runtime"
+	"sync"
 )
 
 func main() {
@@ -23,12 +22,12 @@ func main() {
 
 	results := make(chan string, 100) // Buffered channel to store results
 	// Start tools concurrently
-	go runTool(&wg, "gau", []string{"--subs", domain}, results)
+	go runTool(&wg, "gau", []string{"--subs", domain}, results, prevOutput)
 	go runTool(&wg, "httpx", []string{"--no-color"}, results, prevOutput) // httpx needs special handling
-	go runTool(&wg, "assetfinder", []string{"-subs-only", domain}, results)
-	go runTool(&wg, "amass", []string{"enum", "--passive", "-d", domain}, results)
-	go runTool(&wg, "subfinder", []string{"-d", domain}, results)
-	go runTool(&wg, "/Umbrabug/Sublist3r python3 sublist3r.py", []string{"-b", "-d", domain}, results)
+	go runTool(&wg, "assetfinder", []string{"-subs-only", domain}, results, prevOutput)
+	go runTool(&wg, "amass", []string{"enum", "--passive", "-d", domain}, results, prevOutput)
+	go runTool(&wg, "subfinder", []string{"-d", domain}, results, prevOutput)
+	go runTool(&wg, "/Umbrabug/Sublist3r python3 sublist3r.py", []string{"-b", "-d", domain}, results, prevOutput)
 
 	wg.Wait()
 	close(results) // Close channel after all writes are done
@@ -38,7 +37,7 @@ func main() {
 	for result := range results {
 		finalOutput = append(finalOutput, result)
 	}
-	finalOutput = unique(finalOutput)
+	finalOutput = subSort(finalOutput)
 
 	// Write results to CSV
 	csvFileName := fmt.Sprintf("%s.csv", domain)
@@ -70,7 +69,7 @@ func runTool(wg *sync.WaitGroup, command string, args []string, results chan<- s
 	// Special handling for tools that require input from a file or stdin
 	if command == "httpx" && len(prevOutput) > 0 {
 		// Create a temporary file
-		tmpFile, err := ioutil.TempFile("", "httpx-input")
+		tmpFile, err := os.CreateTemp("", "httpx-input")
 		if err != nil {
 			fmt.Printf("Error creating temp file for httpx input: %s\n", err)
 			return
@@ -109,15 +108,14 @@ func runTool(wg *sync.WaitGroup, command string, args []string, results chan<- s
 }
 
 // In the main or calling function, ensure to collect the previous outputs into a slice before calling runTool for httpx
- // Assume this is filled with outputs from previous tools
+// Assume this is filled with outputs from previous tools
 
-
-func unique(strings []string) []string {
-	seen := make(map[string]struct{})
+func subSort(s []string) []string {
+	inResult := make(map[string]bool)
 	var result []string
-	for _, str := range strings {
-		if _, ok := seen[str]; !ok {
-			seen[str] = true
+	for _, str := range s {
+		if _, ok := inResult[str]; !ok {
+			inResult[str] = true
 			result = append(result, str)
 		}
 	}
