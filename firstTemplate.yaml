@@ -1,8 +1,0 @@
-id: first-template
-info: 
-    name: First Template
-    author: Umbra
-    severity:
-    tags: xss,cms
-
-    requests:
