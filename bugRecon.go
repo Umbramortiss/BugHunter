@@ -1,25 +1,24 @@
 package main
 
 import (
+	"encoding/csv"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 	"sync"
-	"io/ioutil"
 )
 
 var domain string
 var output []string
 var liveOutput []string
 
-
 func domName() {
 	fmt.Print("Enter your domain: ")
 	fmt.Scanf("%s", &domain)
 }
-
-``
 
 func gau(wg *sync.WaitGroup) {
 
@@ -37,7 +36,7 @@ func gau(wg *sync.WaitGroup) {
 		output = append(output, string(out[:]))
 		fmt.Println(output)
 
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 
@@ -49,19 +48,19 @@ func httpx(wg *sync.WaitGroup) {
 
 	if _,
 		err := os.Stat("/usr/bin/httpx"); err == nil {
-			file, err := ioutil.TempFile("","httpx")
-			if err != nil {
-				fmt.Printf("Error creating temp file: %s", err)
-				return
-			}
-			defer os.Remove(file.Name())
+		file, err := ioutil.TempFile("", "httpx")
+		if err != nil {
+			fmt.Printf("Error creating temp file: %s", err)
+			return
+		}
+		defer os.Remove(file.Name())
 
-			if _, err := file.WriteString(strings.Join(output, "\n")); err != nil {
-				fmt.Printf("Error writing to temp file: %s", err)
-				return
-			}
+		if _, err := file.WriteString(strings.Join(output, "\n")); err != nil {
+			fmt.Printf("Error writing to temp file: %s", err)
+			return
+		}
 		out,
-			err := exec.Command("httpx", "-l",file.Name(), "--no-color", domain).Output()
+			err := exec.Command("httpx", "-l", file.Name(), "--no-color", domain).Output()
 		fmt.Println(err)
 		if err != nil {
 			fmt.Printf("%s", err)
@@ -71,7 +70,7 @@ func httpx(wg *sync.WaitGroup) {
 		liveOutput := string(out[:])
 		fmt.Println(liveOutput)
 
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 
@@ -81,7 +80,7 @@ func assetf(wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	if _,
-		err := os.Stat("/usr/bin/assetfinder"); err == nil{
+		err := os.Stat("/usr/bin/assetfinder"); err == nil {
 		out,
 			err := exec.Command("assetfinder", "-subs-only", domain).Output()
 
@@ -91,7 +90,7 @@ func assetf(wg *sync.WaitGroup) {
 		fmt.Println("Running assetfinder for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 }
@@ -110,7 +109,7 @@ func amassF(wg *sync.WaitGroup) {
 		fmt.Println("Running amass for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 }
@@ -129,15 +128,15 @@ func subF(wg *sync.WaitGroup) {
 		fmt.Println("Running subfinder for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 }
 
-func subList3r(wg *sync.WaitGroup){
+func subList3r(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	if _, err := os.Stat("/usr/bin/sublist3r"); err == nil{
+	if _, err := os.Stat("/usr/bin/sublist3r"); err == nil {
 		out, err := exec.Command("sublist3r", "-b", "-d", domain).Output()
 
 		if err != nil {
@@ -146,11 +145,10 @@ func subList3r(wg *sync.WaitGroup){
 		fmt.Println("Running sublist3r for domain enumeration")
 		output = append(output, string(out[:]))
 		fmt.Println(output)
-	}else if os.IsNotExist(err) {
+	} else if os.IsNotExist(err) {
 		fmt.Println("gau command not found")
 	}
 }
-
 
 func subSort(s []string) []string {
 	inResult := make(map[string]bool)
@@ -162,9 +160,9 @@ func subSort(s []string) []string {
 		}
 	}
 	return result
-} 
+}
 
-func writeToCSV(fileName string, data []string)error {
+func writeToCSV(fileName string, data []string) error {
 	f, err := os.Create(fileName)
 	if err != nil {
 		return err
@@ -175,7 +173,7 @@ func writeToCSV(fileName string, data []string)error {
 	defer w.Flush()
 
 	for _, file := range data {
-		if err := w.Write([]string{file});err != nil{
+		if err := w.Write([]string{file}); err != nil {
 			return err
 		}
 	}
@@ -205,8 +203,8 @@ func main() {
 		csvFileName := domain + ".csv"
 		if err := writeToCSV(csvFileName, out); err != nil {
 			fmt.Println("Error writing CSV file:", err)
-		}else{
-			fmt.Println("Saved output to CSV file:",csvFileName )
+		} else {
+			fmt.Println("Saved output to CSV file:", csvFileName)
 		}
 
 		fmt.Println("Done!")
