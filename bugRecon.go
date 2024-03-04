@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/csv"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"runtime"
@@ -77,7 +76,7 @@ func httpx(wg *sync.WaitGroup) {
 
 	if _,
 		err := os.Stat("/usr/bin/httpx"); err == nil {
-		file, err := ioutil.TempFile("", "httpx")
+		file, err := os.CreateTemp("", "httpx")
 		if err != nil {
 			fmt.Printf("Error creating temp file: %s", err)
 			return

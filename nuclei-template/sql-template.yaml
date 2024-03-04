@@ -1,0 +1,21 @@
+id: example-sql-injection
+info:
+  name: Example SQL Injection
+  author: yourname
+  severity: high
+  description: Basic SQL Injection detection
+  reference: https://owasp.org/www-community/attacks/SQL_Injection
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/vulnerable/path?q=' OR 1=1 -- -"
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "SQL syntax"
+          - "mysql_fetch_assoc"
+          - "ODBC SQL Server Driver"
+        part: body
+        condition: or
