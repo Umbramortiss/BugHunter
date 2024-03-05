@@ -1,0 +1,25 @@
+id: custom-xss-detection-via-url-param
+info:
+  name: Custom XSS Detection via URL Parameter
+  author: yourname
+  severity: high
+  description: Detects XSS vulnerabilities through URL parameter injection
+  tags: xss,param
+  reference:
+    - https://owasp.org/www-community/attacks/xss/
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/target/path?q=<script>alert(\"XSS4\")</script>"
+
+    matchers-condition: or
+    matchers:
+      - type: status
+        status:
+          - 200
+          - 302
+      - type: word
+        words:
+          - "<script>alert(\"XSS4\")</script>"
+        part: body

